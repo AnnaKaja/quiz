@@ -16,6 +16,15 @@ public class Quiz {
     @OneToMany
     private List<Question> questions;
 
+    public Quiz() {
+    }
+
+    public Quiz(String name, QuizCategory quizCategory, List<Question> questions) {
+        this.name = name;
+        this.quizCategory = quizCategory;
+        this.questions = questions;
+    }
+
     public long getId() {
         return id;
     }

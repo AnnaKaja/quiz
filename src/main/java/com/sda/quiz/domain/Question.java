@@ -16,6 +16,16 @@ public class Question {
     private QuestionCategory questionCategory;
     private int rating;
 
+    public Question() {
+    }
+
+    public Question(String questionContent, List<String> answers, QuestionCategory questionCategory, int rating) {
+        this.questionContent = questionContent;
+        this.answers = answers;
+        this.questionCategory = questionCategory;
+        this.rating = rating;
+    }
+
     public long getId() {
         return id;
     }
