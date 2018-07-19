@@ -28,34 +28,21 @@ public class QuizApplication {
     @Bean
     public CommandLineRunner commandLineRunner(QuizRepository quizRepository, QuestionRepository questionRepository) {
         return (args -> {
-            saveNewQuiz(quizRepository, questionRepository);
-            saveNewQuiz(quizRepository, questionRepository);
-            saveNewQuiz(quizRepository, questionRepository);
-            saveNewQuiz(quizRepository, questionRepository);
+            for (int i = 0; i < 4; i++) {
+                saveNewQuiz(quizRepository, questionRepository);
+            }
         });
     }
 
     private void saveNewQuiz(QuizRepository quizRepository, QuestionRepository questionRepository) {
-        Question question = new Question("abcd", Arrays.asList("a", "b", "c", "d"), QuestionCategory.BIOLOGY, 5);
-        Question question2 = new Question("abcd2", Arrays.asList("a", "b", "c", "d"), QuestionCategory.BIOLOGY, 5);
-        Question question3 = new Question("abcd3", Arrays.asList("a", "b", "c", "d"), QuestionCategory.BIOLOGY, 5);
-        Question question4 = new Question("abcd4", Arrays.asList("a", "b", "c", "d"), QuestionCategory.BIOLOGY, 5);
-        Question savedQuestion = questionRepository.save(question);
-        Question savedQuestion2 = questionRepository.save(question2);
-        Question savedQuestion3 = questionRepository.save(question3);
-        Question savedQuestion4 = questionRepository.save(question4);
+        Question q1 = questionRepository.save(createRandomQuestion());
+        Question q2 = questionRepository.save(createRandomQuestion());
+        Question q3 = questionRepository.save(createRandomQuestion());
+        Question q4 = questionRepository.save(createRandomQuestion());
 
-        Quiz quiz = new Quiz("test", QuizCategory.GENERAL, Arrays.asList(savedQuestion, savedQuestion2, savedQuestion3, savedQuestion4));
-        quizRepository.save(quiz);
-
-
-        List<Question> questions = new ArrayList<Question>();
-        questions.add(question);
-        questions.add(question2);
-        questions.add(question3);
-
-        Collections.shuffle(questions);
+        quizRepository.save(createRandomQuiz(Arrays.asList(q1, q2, q3, q4)));
     }
+
     private Question createRandomQuestion() {
         Question question = new Question();
         question.setQuestionContent(RandomStringUtils.randomAlphabetic(20));
@@ -65,11 +52,18 @@ public class QuizApplication {
                 RandomStringUtils.randomAlphabetic(10))
         );
         question.setQuestionCategory(QuestionCategory.BIOLOGY);
-        question.setRating(random.nextInt(10));
+        question.setRating(random.nextInt(10) + 1);
 
         return question;
     }
 
+    private Quiz createRandomQuiz(List<Question> questions) {
+        Quiz quiz = new Quiz();
+        quiz.setName(RandomStringUtils.randomAlphabetic(20));
+        quiz.setQuizCategory(QuizCategory.GENERAL);
+        quiz.setQuestions(questions);
 
+        return quiz;
+    }
 }
 
