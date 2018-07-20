@@ -21,4 +21,7 @@ public class QuizService  {
         return list;
 
     }
+    public Quiz getQuiz(Long id){
+        return quizRepository.findById(id).orElseGet(()-> null);
+    }
 }
