@@ -56,4 +56,10 @@ public class Quiz {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    public Integer getTotalRating() {
+        return questions.stream()
+                .mapToInt(e -> e.getRating())
+                .sum();
+    }
 }

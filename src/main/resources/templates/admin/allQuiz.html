@@ -7,23 +7,59 @@
 </head>
 <body>
 Hello from admin all quiz
-<ul>
-    <li th:each="quiz : ${allQuiz}">
-        <h2 th:text="${quiz.name}">Quiz1 Title</h2>
-        <h6 th:text="${quiz.quizCategory}">Quiz Category</h6>
-        <ul>
-            <li th:each="question : ${quiz.questions}">
-                <h2><span th:text="${question.questionContent}">First Question Content</span> (<span
-                        th:text="${question.rating}">5</span>)</h2>
-                <h6 th:text="${question.questionCategory}">First Question Category</h6>
-                <ol>
-                    <li th:each="answer : ${question.answers}">
-                        <p th:text="${answer}">First answer</p>
-                    </li>
-                </ol>
-            </li>
-        </ul>
-    </li>
-</ul>
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Nazwa</td>
+        <td>Kategoria</td>
+        <td>Pytania</td>
+        <td>Punktacja</td>
+        <td>Akcje</td>
+    </tr>
+    <tbody>
+    <tr th:each="quiz : ${allQuiz}">
+        <td>
+            <a th:text="${quiz.id}" th:href="'/quiz/' + ${quiz.id}" href="#">1</a>
+        </td>
+        <td th:text="${quiz.name}">Ile lat ma prezydent</td>
+        <td>Wiedza ogolna</td>
+        <td>
+            <ol>
+                <li th:each="question : ${quiz.questions}" th:text="${question.questionContent}">33</li>
+            </ol>
+        </td>
+        <td th:text="${quiz.totalRating}">15</td>
+
+        <td>
+            <button style="background-color: orange">Edytuj</button>
+            <button style="background-color:red;color: white">Usuń</button>
+        </td>
+    </tr>
+    </tbody>
+
+    </thead>
+
+</table>
+
+
+<!--<ul>-->
+<!--<li th:each="quiz : ${allQuiz}">-->
+<!--<h2 th:text="${quiz.name}">Quiz1 Title</h2>-->
+<!--<h6 th:text="${quiz.quizCategory}">Quiz Category</h6>-->
+<!--<ul>-->
+<!--<li th:each="question : ${quiz.questions}">-->
+<!--<h2><span th:text="${question.questionContent}">First Question Content</span> (<span-->
+<!--th:text="${question.rating}">5</span>)</h2>-->
+<!--<h6 th:text="${question.questionCategory}">First Question Category</h6>-->
+<!--<ol>-->
+<!--<li th:each="answer : ${question.answers}">-->
+<!--<p th:text="${answer}">First answer</p>-->
+<!--</li>-->
+<!--</ol>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
 </body>
 </html>
