@@ -16,6 +16,6 @@
         </a>
     </li>
 </ol>
-<a href="">Next</a>
+<a th:if="${nextQuizPath} != null" th:href="${nextQuizPath}" href="#">Next</a>
 </body>
 </html>

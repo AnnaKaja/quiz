@@ -8,20 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class QuizService  {
+public class QuizService {
     private QuizRepository quizRepository;
 
     public QuizService(QuizRepository quizRepository) {
         this.quizRepository = quizRepository;
     }
-    public List<Quiz> getAllQuiz(){
+
+    public List<Quiz> getAllQuiz() {
         Iterable<Quiz> iterable = quizRepository.findAll();
         List<Quiz> list = new ArrayList<>();
-        iterable.forEach(e->list.add(e));
+        iterable.forEach(e -> list.add(e));
         return list;
 
     }
-    public Quiz getQuiz(Long id){
-        return quizRepository.findById(id).orElseGet(()-> null);
+
+    public Quiz getQuiz(Long id) {
+        return quizRepository.findById(id).orElseGet(() -> null);
+    }
+
+    public Quiz fetchNextQuiz(Quiz quiz) {
+        List<Quiz> allQuiz = getAllQuiz();
+        int index = allQuiz.indexOf(quiz);
+        return index + 1 < allQuiz.size() ? allQuiz.get(index + 1) : null;
     }
 }

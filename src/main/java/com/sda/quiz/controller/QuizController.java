@@ -1,6 +1,7 @@
 package com.sda.quiz.controller;
 
 import com.sda.quiz.domain.Question;
+import com.sda.quiz.domain.Quiz;
 import com.sda.quiz.service.QuestionService;
 import com.sda.quiz.service.QuizService;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,9 @@ public class QuizController {
     @GetMapping("/quiz/{id}")
     public ModelAndView getQuiz(@PathVariable("id") long id) {
         ModelAndView modelAndView = new ModelAndView("quiz");
-        modelAndView.addObject("quiz", quizService.getQuiz(id));
+        Quiz quiz = quizService.getQuiz(id);
+        modelAndView.addObject("quiz", quiz);
+        modelAndView.addObject("nextQuizPath", fetchNextQuizPath(quizService.fetchNextQuiz(quiz)));
         return modelAndView;
     }
 
@@ -44,5 +47,9 @@ public class QuizController {
 
     private String fetchNextQuestionPath(Question question, long quizId) {
         return question == null ? null : "/quiz/" + quizId + "/question/" + question.getId();
+    }
+
+    private String fetchNextQuizPath(Quiz quiz) {
+        return quiz != null ? "/quiz/" + quiz.getId() : null;
     }
 }
