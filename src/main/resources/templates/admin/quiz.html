@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+
+</head>
+<body>
+<h3 th:text="${quiz.name}">Nazwa quizu</h3>
+<h4>Pytania</h4>
+<ol>
+
+    <li th:each="question : ${quiz.questions}"> <a th:href="'/admin/quiz/' + ${quiz.id} + '/question/' + ${question.id}" href="#">Odpowiedz</a></li>
+
+</ol>
+<button style="background-color: orange">Edit</button>
+<button style="background-color:red;color: white">Remove</button>
+</body>
+</html>

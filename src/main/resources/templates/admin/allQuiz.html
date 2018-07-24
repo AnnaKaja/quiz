@@ -20,7 +20,7 @@ Hello from admin all quiz
     <tbody>
     <tr th:each="quiz : ${allQuiz}">
         <td>
-            <a th:text="${quiz.id}" th:href="'/quiz/' + ${quiz.id}" href="#">1</a>
+            <a th:text="${quiz.id}" th:href="'/admin/quiz/' + ${quiz.id}" href="#">1</a>
         </td>
         <td th:text="${quiz.name}">Ile lat ma prezydent</td>
         <td>Wiedza ogolna</td>

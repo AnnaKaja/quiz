@@ -62,4 +62,14 @@ public class Quiz {
                 .mapToInt(e -> e.getRating())
                 .sum();
     }
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", quizCategory=" + quizCategory +
+                ", questions=" + questions +
+                '}';
+    }
 }
