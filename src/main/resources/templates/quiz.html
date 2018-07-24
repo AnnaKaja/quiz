@@ -10,14 +10,12 @@
 <h6 th:text="${quiz.quizCategory}">Quiz Category</h6>
 <ol>
     <li th:each="question : ${quiz.questions}">
-        <a th:href="'/quiz/' + ${quiz.id} + '/question/' + ${question.id}" href="#" th:text="${question.questionContent}">
+        <a th:href="'/quiz/' + ${quiz.id} + '/question/' + ${question.id}" href="#"
+           th:text="${question.questionContent}">
             Lifestyle
         </a>
     </li>
 </ol>
-
-
-<button>Next</button>
-
+<a href="">Next</a>
 </body>
 </html>

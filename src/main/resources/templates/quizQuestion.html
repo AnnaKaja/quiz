@@ -7,14 +7,14 @@
     <title>Title</title>
 </head>
 <body>
-    <h2 th:text="${question.questionCategory}">Lifestyle</h2>
-    <h3 th:text="${question.questionContent}">Ile lat ma prezydent?</h3>
+<h2 th:text="${question.questionCategory}">Lifestyle</h2>
+<h3 th:text="${question.questionContent}">Ile lat ma prezydent?</h3>
 <p>
-    <ol>
-        <li th:each="answer : ${question.answers}" th:text="${answer}">
-            33
-        </li>
-    </ol>
-    <button>Next</button>
+<ol>
+    <li th:each="answer : ${question.answers}" th:text="${answer}">
+        33
+    </li>
+</ol>
+<a th:if="${nextQuestionPath} != null" href="#" th:href="${nextQuestionPath}">Next</a>
 </body>
 </html>
