@@ -1,6 +1,7 @@
 package com.sda.quiz.service;
 
 import com.sda.quiz.domain.Quiz;
+import com.sda.quiz.domain.QuizNotFoundException;
 import com.sda.quiz.repository.QuizRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +24,19 @@ public class QuizService {
 
     }
 
-    public Quiz saveQuiz(Quiz quiz) {
-        return quizRepository.save(quiz);
-
+    public Quiz getQuiz(Long id) {
+        return quizRepository.findById(id).orElseGet(() -> {
+            throw new QuizNotFoundException("Quiz not found");
+        });
     }
 
-    public Quiz getQuizById(long quizId) {
-        return quizRepository.findById(quizId).orElseGet(() -> null);
+    public Quiz fetchNextQuiz(Quiz quiz) {
+        List<Quiz> allQuiz = getAllQuiz();
+        int index = allQuiz.indexOf(quiz);
+        return index + 1 < allQuiz.size() ? allQuiz.get(index + 1) : null;
+    }
+    public Quiz saveQuiz(Quiz quiz) {
+        return quizRepository.save(quiz);
 
     }
 }

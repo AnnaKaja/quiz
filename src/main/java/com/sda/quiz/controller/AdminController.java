@@ -30,7 +30,7 @@ public class AdminController {
     @GetMapping("/admin/quiz/{quizId}")
     public ModelAndView adminQuizById(@PathVariable("quizId") long quizId) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("quiz", quizService.getQuizById(quizId));
+        modelAndView.addObject("quiz", quizService.getQuiz(quizId));
         modelAndView.setViewName("admin/quiz");
         return modelAndView;
     }
@@ -51,7 +51,7 @@ public class AdminController {
     @GetMapping("/admin/quiz/{quizId}/question/{questionId}")
     public ModelAndView getAdminQuizQuestion(@PathVariable("quizId") long quizId, @PathVariable("questionId") long questionId) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("quiz", quizService.getQuizById(quizId));
+        modelAndView.addObject("quiz", quizService.getQuiz(quizId));
         return modelAndView;
     }
 }
