@@ -27,7 +27,6 @@ public class QuizServiceTest {
         Assert.assertTrue(quiz.getName().equals("testowy quiz"));
         Assert.assertEquals(QuizCategory.GENERAL, quiz.getQuizCategory());
         Assert.assertEquals(new ArrayList<>(), quiz.getQuestions());
-
     }
 
     @Test(expected = QuizNotFoundException.class)
