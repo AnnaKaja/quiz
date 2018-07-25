@@ -6,6 +6,10 @@
     <link th:href="@{/css/admin/allQuiz.css}" href="../../static/css/admin/allQuiz.css" rel="stylesheet">
 </head>
 <body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="logout">
+</form>
+
 Hello from admin all quiz
 <table border="1">
     <thead>
