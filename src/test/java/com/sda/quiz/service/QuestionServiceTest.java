@@ -13,7 +13,6 @@ import java.util.Optional;
 
 public class QuestionServiceTest {
 
-
     @Test
     public void get_quiz_successfully() {
         //given
