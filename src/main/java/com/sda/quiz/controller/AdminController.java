@@ -3,7 +3,6 @@ package com.sda.quiz.controller;
 import com.sda.quiz.controller.dto.NewQuizDto;
 import com.sda.quiz.domain.Quiz;
 import com.sda.quiz.service.QuizService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,5 +52,19 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("quiz", quizService.getQuiz(quizId));
         return modelAndView;
+    }
+
+    @GetMapping("/admin/quiz-edit/{quizId}")
+    public ModelAndView editQuiz(@PathVariable("quizId") long quizId) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("quiz", quizService.getQuiz(quizId));
+        modelAndView.setViewName("admin/editQuiz");
+        return modelAndView;
+    }
+
+    @PostMapping("/admin/quiz-edit")
+    public String adminEditQuiz(@ModelAttribute Quiz quiz) {
+        quizService.saveQuiz(quiz);
+        return "redirect:/admin/quiz";
     }
 }

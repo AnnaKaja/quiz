@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Quiz</title>
+    <h2>Edycja quizu</h2>
+</head>
+<body>
+<form action="/admin/quiz-edit" method="post">
+    <input type="hidden" th:value="${quiz.id}" name="id">
+    <h3>Nazwa<input type="text" name="name" th:value="${quiz.name}"></h3>
+    <h3>Kategoria
+        <select name="category" th:value="${quiz.name}">
+            <option value="math">Math</option>
+            <option value="general">General</option>
+        </select>
+    </h3>
+    <br>
+    <br>
+    <div>
+        <input value="Zapisz" type="submit">
+    </div>
+    </div>
+</form>
+</body>
+</html>
