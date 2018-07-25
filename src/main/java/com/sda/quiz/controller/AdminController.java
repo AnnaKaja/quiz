@@ -26,8 +26,9 @@ public class AdminController {
         modelAndView.addObject("allQuiz", quizService.getAllQuiz());
         return modelAndView;
     }
+
     @GetMapping("/admin/quiz/{quizId}")
-    public ModelAndView adminQuizById(@PathVariable("quizId") long quizId){
+    public ModelAndView adminQuizById(@PathVariable("quizId") long quizId) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("quiz", quizService.getQuizById(quizId));
         modelAndView.setViewName("admin/quiz");
@@ -38,14 +39,13 @@ public class AdminController {
     public ModelAndView newQuiz() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/newQuiz");
-//        modelAndView.addObject("newQuiz",quizService.getAllQuiz());
         return modelAndView;
     }
 
     @PostMapping("/admin/quiz")
     public String quizCreation(@ModelAttribute NewQuizDto quiz) {
         Quiz newCreatedQuiz = quizService.saveQuiz(quiz.toQuiz());
-        return "redirect:/admin/quiz/"+ newCreatedQuiz.getId();
+        return "redirect:/admin/quiz/" + newCreatedQuiz.getId();
     }
 
     @GetMapping("/admin/quiz/{quizId}/question/{questionId}")
