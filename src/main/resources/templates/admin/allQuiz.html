@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/admin/allQuiz.css}" href="../../static/css/admin/allQuiz.css" rel="stylesheet">
+</head>
+<body>
+Hello from admin all quiz
+<table border="1">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>Nazwa</td>
+        <td>Kategoria</td>
+        <td>Pytania</td>
+        <td>Punktacja</td>
+        <td>Akcje</td>
+    </tr>
+    <tbody>
+    <tr th:each="quiz : ${allQuiz}">
+        <td>
+            <a th:text="${quiz.id}" th:href="'/admin/quiz/' + ${quiz.id}" href="#">1</a>
+        </td>
+        <td th:text="${quiz.name}">Ile lat ma prezydent</td>
+        <td>Wiedza ogolna</td>
+        <td>
+            <ol>
+                <li th:each="question : ${quiz.questions}" th:text="${question.questionContent}">33</li>
+            </ol>
+        </td>
+        <td th:text="${quiz.totalRating}">15</td>
+
+        <td>
+            <button style="background-color: orange">Edytuj</button>
+            <button style="background-color:red;color: white">Usuń</button>
+        </td>
+    </tr>
+    </tbody>
+
+    </thead>
+
+</table>
+</body>
+</html>

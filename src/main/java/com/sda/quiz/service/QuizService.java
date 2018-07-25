@@ -35,4 +35,8 @@ public class QuizService {
         int index = allQuiz.indexOf(quiz);
         return index + 1 < allQuiz.size() ? allQuiz.get(index + 1) : null;
     }
+    public Quiz saveQuiz(Quiz quiz) {
+        return quizRepository.save(quiz);
+
+    }
 }
