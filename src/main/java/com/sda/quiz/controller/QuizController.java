@@ -1,12 +1,17 @@
 package com.sda.quiz.controller;
 
 import com.sda.quiz.domain.Question;
+import com.sda.quiz.domain.QuestionNotFoundException;
 import com.sda.quiz.domain.Quiz;
+import com.sda.quiz.domain.QuizNotFoundException;
 import com.sda.quiz.service.QuestionService;
 import com.sda.quiz.service.QuizService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -42,6 +47,20 @@ public class QuizController {
         ModelAndView modelAndView = new ModelAndView("quizQuestion");
         modelAndView.addObject("question", questionService.getQuestion(questionId));
         modelAndView.addObject("nextQuestionPath", fetchNextQuestionPath(questionService.fetchNextQuestion(quizId, questionId), quizId));
+        return modelAndView;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(QuizNotFoundException.class)
+    public ModelAndView quizNotFound() {
+        ModelAndView modelAndView = new ModelAndView("quizNotFound");
+        return modelAndView;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(QuestionNotFoundException.class)
+    public ModelAndView questionNotFound() {
+        ModelAndView modelAndView = new ModelAndView("questionNotFound");
         return modelAndView;
     }
 

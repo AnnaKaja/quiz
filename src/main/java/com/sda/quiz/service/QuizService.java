@@ -1,6 +1,7 @@
 package com.sda.quiz.service;
 
 import com.sda.quiz.domain.Quiz;
+import com.sda.quiz.domain.QuizNotFoundException;
 import com.sda.quiz.repository.QuizRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,9 @@ public class QuizService {
     }
 
     public Quiz getQuiz(Long id) {
-        return quizRepository.findById(id).orElseGet(() -> null);
+        return quizRepository.findById(id).orElseGet(() -> {
+            throw new QuizNotFoundException("Quiz not found");
+        });
     }
 
     public Quiz fetchNextQuiz(Quiz quiz) {
